@@ -3228,6 +3228,7 @@ done:
 
 	switch (chan->mode) {
 	case L2CAP_MODE_BASIC:
+#if 0
 		if (disable_ertm)
 			break;
 
@@ -3244,6 +3245,7 @@ done:
 
 		l2cap_add_conf_opt(&ptr, L2CAP_CONF_RFC, sizeof(rfc),
 				   (unsigned long) &rfc, endptr - ptr);
+#endif
 		break;
 
 	case L2CAP_MODE_ERTM:
@@ -4207,7 +4209,7 @@ static inline int l2cap_config_rsp(struct l2cap_conn *conn,
 			}
 		}
 		goto done;
-
+	case L2CAP_CONF_UNKNOWN:
 	case L2CAP_CONF_UNACCEPT:
 		if (chan->num_conf_rsp <= L2CAP_CONF_MAX_CONF_RSP) {
 			char req[64];
